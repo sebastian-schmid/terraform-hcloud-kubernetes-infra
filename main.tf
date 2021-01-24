@@ -34,15 +34,15 @@ resource "hcloud_load_balancer_network" "lbnetwork" {
 
 # provision control plane nodes
 resource "hcloud_server" "control_plane" {
-  count = control_plane_nodes
+  count = var.control_plane_nodes
   
-  name        = "${control_plane_node_name}-${count.index}"
-  image       = node_image
-  server_type = control_plane_node_server_type
-  location    = hcloud_location
-  backups     = node_backup
-  keep_disk   = node_keep_disk
-  ssh_keys    = ssh_public_key_name
+  name        = "${var.control_plane_node_name}-${count.index}"
+  image       = var.node_image
+  server_type = var.control_plane_node_server_type
+  location    = var.hcloud_location
+  backups     = var.node_backup
+  keep_disk   = var.node_keep_disk
+  ssh_keys    = var.ssh_public_key_name
 
   provisioner "remote-exec" {
     inline = [var.install_ansible_dependencies ? var.ansible_dependencies_install_command : "sleep 0"]
@@ -60,13 +60,13 @@ resource "hcloud_server" "control_plane" {
 resource "hcloud_server" "worker" {
   count = worker_nodes
   
-  name        = "${worker_node_name}-${count.index}"
-  image       = node_image
-  server_type = worker_node_server_type
-  location    = hcloud_location
-  backups     = node_backup
-  keep_disk   = node_keep_disk
-  ssh_keys    = ssh_public_key_name
+  name        = "${var.worker_node_name}-${count.index}"
+  image       = var.node_image
+  server_type = var.worker_node_server_type
+  location    = var.hcloud_location
+  backups     = var.node_backup
+  keep_disk   = var.node_keep_disk
+  ssh_keys    = var.ssh_public_key_name
 
   provisioner "remote-exec" {
     inline = [var.install_ansible_dependencies ? var.ansible_dependencies_install_command : "sleep 0"]

@@ -7,10 +7,11 @@ This terraform module provisions servers with private network and a loadbalancer
 Following minimal config will provision one control plane node (cx11) and one worker node (cx11) and one load balancer (lb11) by default which will cost you about 12€ per month if you let it run:
 
 ```terraform
-ssh_private_key = "~/.ssh/id_rsa"
-ssh_public_key  = "~/.ssh/id_rsa.pub"
+module "hcloud" {
+  source = "git::https://gitlab.com/sebastian-terraform-modules/hcloud-kubernetes-infra"
 
-  ...
+  ssh_private_key = "~/.ssh/id_rsa"
+  ssh_public_key  = "~/.ssh/id_rsa.pub"
 }
 ```
 
@@ -19,48 +20,51 @@ ssh_public_key  = "~/.ssh/id_rsa.pub"
 Following example config shows some available variables which can be customized to your needs:
 
 ```terraform
-ssh_private_key = "~/.ssh/id_rsa"
-ssh_public_key  = "~/.ssh/id_rsa.pub"
-ssh_public_key_name = "default-key"
+module "hcloud" {
+  source = "git::https://gitlab.com/sebastian-terraform-modules/hcloud-kubernetes-infra"
 
-# number of nodes of each type
-control_plane_nodes = 1
-worker_nodes = 2
+  ssh_private_key = "~/.ssh/id_rsa"
+  ssh_public_key  = "~/.ssh/id_rsa.pub"
+  ssh_public_key_name = "default-key"
 
-# hcloud location to provision ressources in
-hcloud_location = "nbg1"
+  # number of nodes of each type
+  control_plane_nodes = 1
+  worker_nodes = 2
 
-# OS image for all nodes
-node_image = "debian-10"
+  # hcloud location to provision ressources in
+  hcloud_location = "nbg1"
 
-# Name prefix for control plane nodes
-control_plane_node_name = "control-plane"
+  # OS image for all nodes
+  node_image = "debian-10"
 
-# Server type of control plane node
-control_plane_node_server_type = "cx11"
+  # Name prefix for control plane nodes
+  control_plane_node_name = "control-plane"
 
-# Name prefix for worker nodes
-worker_node_name = "worker"
+  # Server type of control plane node
+  control_plane_node_server_type = "cx11"
 
-# Server type of worker node
-worker_node_server_type = "cx11"
+  # Name prefix for worker nodes
+  worker_node_name = "worker"
 
-# Private network name
-private_network_name = "private-network"
+  # Server type of worker node
+  worker_node_server_type = "cx11"
 
-# CIDR of private network
-privat_ip_range = "10.10.0.0/16"
+  # Private network name
+  private_network_name = "private-network"
 
-# Name for the load balancer
-load_balancer_name = "load-balancer"
+  # CIDR of private network
+  privat_ip_range = "10.10.0.0/16"
 
-# Load balancer type
-load_balancer_type = "lb11"
+  # Name for the load balancer
+  load_balancer_name = "load-balancer"
 
-# ansible related variables
-install_ansible_dependencies = true
-ansible_dependencies_install_command = "sudo apt install -y python3"
+  # Load balancer type
+  load_balancer_type = "lb11"
 
+  # ansible related variables
+  install_ansible_dependencies = true
+  ansible_dependencies_install_command = "sudo apt install -y python3"
+}
 ```
 
 ## All available variables
