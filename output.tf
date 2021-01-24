@@ -29,13 +29,13 @@ output "worker_ipv6" {
 # display load balancer IPs
 output "load_balancer_ipv4" {
   value = {
-    for load_balancer in hcloud_load_balancer :
+    for load_balancer in hcloud_load_balancer.load_balancer :
     load_balancer.name => load_balancer.ipv4
   }
 }
 output "load_balancer_ipv6" {
   value = {
-    for load_balancer in hcloud_load_balancer :
+    for load_balancer in hcloud_load_balancer.load_balancer :
     load_balancer.name => load_balancer.ipv6
   }
 }
