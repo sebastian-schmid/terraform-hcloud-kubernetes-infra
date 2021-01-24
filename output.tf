@@ -4,14 +4,14 @@ output "control_plane_ipv4" {
     for control_plane in hcloud_server.control_plane :
     control_plane.name => control_plane.ipv4_address
   }
-  description = "All IPv4 addresses of the control plane nodes."
+  description = "All IPv4 addresses of all control plane nodes."
 }
 output "control_plane_ipv6" {
   value = {
     for control_plane in hcloud_server.control_plane :
     control_plane.name => control_plane.ipv6_address
   }
-  description = "All IPv6 addresses of the control plane nodes."
+  description = "All IPv6 addresses of all control plane nodes."
 }
 
 # display worker IPs
@@ -20,14 +20,14 @@ output "worker_ipv4" {
     for worker in hcloud_server.worker :
     worker.name => worker.ipv4_address
   }
-  description = "All IPv4 addresses of the worker nodes."
+  description = "All IPv4 addresses of all worker nodes."
 }
 output "worker_ipv6" {
   value = {
     for worker in hcloud_server.worker :
     worker.name => worker.ipv6_address
   }
-  description = "All IPv6 addresses of the worker nodes."
+  description = "All IPv6 addresses of all worker nodes."
 }
 
 # display load balancer IPs

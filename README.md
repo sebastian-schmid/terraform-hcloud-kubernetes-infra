@@ -7,7 +7,7 @@ This terraform module provisions servers with private network and a loadbalancer
 Following minimal config will provision one control plane node (cx11) and one worker node (cx11) and one load balancer (lb11) by default which will cost you about 12€ per month if you let it run:
 
 ```terraform
-module "hcloud" {
+module "hcloud_kubernetes_infra" {
   source = "git::https://gitlab.com/sebastian-terraform-modules/hcloud-kubernetes-infra"
 
   ssh_private_key = "~/.ssh/id_rsa"
@@ -20,7 +20,7 @@ module "hcloud" {
 Following example config shows some available variables which can be customized to your needs:
 
 ```terraform
-module "hcloud" {
+module "hcloud_kubernetes_infra" {
   source = "git::https://gitlab.com/sebastian-terraform-modules/hcloud-kubernetes-infra"
 
   ssh_private_key = "~/.ssh/id_rsa"
@@ -70,3 +70,34 @@ module "hcloud" {
 ## All available variables
 
 You can find all available variables in variables.tf.
+
+## Available outputs
+
+Example with all available outputs from the module:
+
+```terraform
+output "control_plane_ipv4" {
+  value = module.hcloud_kubernetes_infra.control_plane_ipv4
+  description = "All IPv4 addresses of all control plane nodes."
+}
+output "control_plane_ipv6" {
+  value = module.hcloud_kubernetes_infra.control_plane_ipv6
+  description = "All IPv6 addresses of all control plane nodes."
+}
+output "worker_ipv4" {
+  value = module.hcloud_kubernetes_infra.worker_ipv4
+  description = "All IPv4 addresses of all worker nodes."
+}
+output "worker_ipv6" {
+  value = module.hcloud_kubernetes_infra.worker_ipv6
+  description = "All IPv6 addresses of all worker nodes."
+}
+output "load_balancer_ipv4" {
+  value = module.hcloud_kubernetes_infra.load_balancer_ipv4
+  description = "This is the IPv4 address of the load balancer."
+}
+output "load_balancer_ipv6" {
+  value = module.hcloud_kubernetes_infra.load_balancer_ipv6
+  description = "This is the IPv6 address of the load balancer."
+}
+```
