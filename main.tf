@@ -30,6 +30,10 @@ resource "hcloud_load_balancer_network" "lbnetwork" {
   load_balancer_id        = hcloud_load_balancer.load_balancer.id
   subnet_id               = hcloud_network_subnet.default.id
   enable_public_interface = true
+  
+  depends_on = [
+    hcloud_network_subnet.default
+  ]
 }
 
 # provision control plane nodes
