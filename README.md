@@ -15,7 +15,7 @@ module "hcloud_kubernetes_infra" {
 }
 ```
 
-## Common Customization
+## Customization
 
 Following example config shows some available variables which can be customized to your needs:
 
@@ -60,10 +60,6 @@ module "hcloud_kubernetes_infra" {
 
   # Load balancer type
   load_balancer_type = "lb11"
-
-  # ansible related variables
-  install_ansible_dependencies = true
-  ansible_dependencies_install_command = "sudo apt install -y python3"
 }
 ```
 
@@ -78,26 +74,26 @@ Example with all available outputs from the module:
 ```terraform
 output "control_plane_ipv4" {
   value = module.hcloud_kubernetes_infra.control_plane_ipv4
-  description = "All IPv4 addresses of all control plane nodes."
+  description = "Show public IPv4 addresses of all control plane nodes."
 }
 output "control_plane_ipv6" {
   value = module.hcloud_kubernetes_infra.control_plane_ipv6
-  description = "All IPv6 addresses of all control plane nodes."
+  description = "Show public IPv6 addresses of all control plane nodes."
 }
 output "worker_ipv4" {
   value = module.hcloud_kubernetes_infra.worker_ipv4
-  description = "All IPv4 addresses of all worker nodes."
+  description = "Show public IPv4 addresses of all worker nodes."
 }
 output "worker_ipv6" {
   value = module.hcloud_kubernetes_infra.worker_ipv6
-  description = "All IPv6 addresses of all worker nodes."
+  description = "Show public IPv6 addresses of all worker nodes."
 }
 output "load_balancer_ipv4" {
   value = module.hcloud_kubernetes_infra.load_balancer_ipv4
-  description = "This is the IPv4 address of the load balancer."
+  description = "Show public IPv4 address of the load balancer."
 }
 output "load_balancer_ipv6" {
   value = module.hcloud_kubernetes_infra.load_balancer_ipv6
-  description = "This is the IPv6 address of the load balancer."
+  description = "Show public IPv6 address of the load balancer."
 }
 ```

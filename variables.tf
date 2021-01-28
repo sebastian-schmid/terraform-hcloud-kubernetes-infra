@@ -91,13 +91,3 @@ variable "load_balancer_type" {
   description = "Type (https://docs.hetzner.cloud/#load-balancer-types) of the Loadbalancer."
   default = "lb11"
 }
-variable "install_ansible_dependencies" {
-  type = bool
-  description = "Enable or disable installation of ansible dependencies."
-  default = true
-}
-variable "ansible_dependencies_install_command" {
-  type = string
-  description = "The command to install ansible dependencies."
-  default = "sudo apt install -y python3"
-}

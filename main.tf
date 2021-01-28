@@ -51,17 +51,6 @@ resource "hcloud_server" "control_plane" {
   network {
     network_id = hcloud_network.default.id
   }
-
-  provisioner "remote-exec" {
-    inline = [var.install_ansible_dependencies ? var.ansible_dependencies_install_command : "sleep 0"]
-
-    connection {
-      host        = self.ipv4_address
-      type        = "ssh"
-      user        = "root"
-      private_key = file(var.ssh_private_key)
-    }
-  }
   
   depends_on = [
     hcloud_network_subnet.default
@@ -82,17 +71,6 @@ resource "hcloud_server" "worker" {
 
   network {
     network_id = hcloud_network.default.id
-  }
-
-  provisioner "remote-exec" {
-    inline = [var.install_ansible_dependencies ? var.ansible_dependencies_install_command : "sleep 0"]
-
-    connection {
-      host        = self.ipv4_address
-      type        = "ssh"
-      user        = "root"
-      private_key = file(var.ssh_private_key)
-    }
   }
 
   depends_on = [
