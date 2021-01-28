@@ -90,5 +90,5 @@ resource "local_file" "hosts" {
       worker_nodes = hcloud_server.worker
     }
   )
-  filename = "./ansible/inventory/hosts"
+  filename = "./ansible/inventory/kubespray_hosts"
 }
