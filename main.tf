@@ -100,9 +100,9 @@ resource "hcloud_server" "worker" {
   ]
 }
 
-# generate inventory file for ansible
+# generate inventory file for ansible kubespray
 resource "local_file" "hosts" {
-  content = templatefile("${path.module}/templates/hosts.tpl",
+  content = templatefile("${path.module}/templates/kubespray_hosts.tpl",
     {
       control_plane_nodes = hcloud_server.control_plane
       worker_nodes = hcloud_server.worker
