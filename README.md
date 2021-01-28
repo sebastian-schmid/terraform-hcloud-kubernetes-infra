@@ -75,28 +75,36 @@ You can find all available variables in variables.tf.
 Example with all available outputs from the module:
 
 ```terraform
-output "control_plane_ipv4" {
-  value = module.hcloud_kubernetes_infra.control_plane_ipv4
+output "control_plane_public_ipv4" {
+  value = module.hcloud_kubernetes_infra.control_plane_public_ipv4
   description = "Show public IPv4 addresses of all control plane nodes."
 }
-output "control_plane_ipv6" {
-  value = module.hcloud_kubernetes_infra.control_plane_ipv6
+output "control_plane_private_ipv4" {
+  value = module.hcloud_kubernetes_infra.control_plane_private_ipv4
+  description = "Show private IPv4 addresses of all control plane nodes."
+}
+output "control_plane_public_ipv6" {
+  value = module.hcloud_kubernetes_infra.control_plane_public_ipv6
   description = "Show public IPv6 addresses of all control plane nodes."
 }
-output "worker_ipv4" {
-  value = module.hcloud_kubernetes_infra.worker_ipv4
+output "worker_public_ipv4" {
+  value = module.hcloud_kubernetes_infra.worker_public_ipv4
   description = "Show public IPv4 addresses of all worker nodes."
 }
-output "worker_ipv6" {
-  value = module.hcloud_kubernetes_infra.worker_ipv6
+output "worker_private_ipv4" {
+  value = module.hcloud_kubernetes_infra.worker_private_ipv4
+  description = "Show private IPv4 addresses of all worker nodes."
+}
+output "worker_public_ipv6" {
+  value = module.hcloud_kubernetes_infra.worker_public_ipv6
   description = "Show public IPv6 addresses of all worker nodes."
 }
-output "load_balancer_ipv4" {
-  value = module.hcloud_kubernetes_infra.load_balancer_ipv4
+output "load_balancer_public_ipv4" {
+  value = module.hcloud_kubernetes_infra.load_balancer_public_ipv4
   description = "Show public IPv4 address of the load balancer."
 }
-output "load_balancer_ipv6" {
-  value = module.hcloud_kubernetes_infra.load_balancer_ipv6
+output "load_balancer_public_ipv6" {
+  value = module.hcloud_kubernetes_infra.load_balancer_public_ipv6
   description = "Show public IPv6 address of the load balancer."
 }
 ```
