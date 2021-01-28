@@ -53,7 +53,8 @@ resource "hcloud_server" "control_plane" {
   }
   
   depends_on = [
-    hcloud_network_subnet.default
+    hcloud_network_subnet.default,
+    hcloud_ssh_key.default
   ]
 }
 
@@ -74,11 +75,12 @@ resource "hcloud_server" "worker" {
   }
 
   depends_on = [
-    hcloud_network_subnet.default
+    hcloud_network_subnet.default,
+    hcloud_ssh_key.default
   ]
 }
 
-# generate inventory file for ansible kubespray
+# generate inventory file for kubespray
 resource "local_file" "hosts" {
   content = templatefile("${path.module}/templates/kubespray_hosts.tpl",
     {
