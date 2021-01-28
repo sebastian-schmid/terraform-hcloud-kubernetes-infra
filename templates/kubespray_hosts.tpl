@@ -2,10 +2,10 @@
 ## Configure 'ip' variable to bind kubernetes services on a
 ## different ip than the default iface
 %{ for server in control_plane_nodes ~}
-${server.name} ansible_host=${server.ipv4_address} ip=${server.network.*.ip}
+${server.name} ansible_host=${server.ipv4_address} ip=${element(server.network.*.ip, 0)}
 %{ endfor ~}
 %{ for server in worker_nodes ~}
-${server.name} ansible_host=${server.ipv4_address} ip=${server.network.*.ip}
+${server.name} ansible_host=${server.ipv4_address} ip=${element(server.network.*.ip, 0)}
 %{ endfor ~}
 
 [kube-master]
