@@ -76,6 +76,11 @@ variable "private_ip_range" {
   description = "IPv4 range (e.g. 10.0.0.0/16) of RFC1918 of the private network. Minimum size /24, recommended /16"
   default = "10.10.0.0/16"
 }
+variable "private_ip_prefix" {
+  type = string
+  description = "Private IPv4 prefix (have to match CIDR of private network)."
+  default = "10.10.0"
+}
 variable "private_network_zone" {
   type = string
   description = "The zone in which the private network will be located in."

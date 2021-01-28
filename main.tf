@@ -49,6 +49,7 @@ resource "hcloud_server" "control_plane" {
   ssh_keys    = [var.ssh_public_key_name]
 
   network {
+    ip = "${var.private_ip_prefix}.${count.index+10}"
     network_id = hcloud_network.default.id
   }
   
@@ -71,6 +72,7 @@ resource "hcloud_server" "worker" {
   ssh_keys    = [var.ssh_public_key_name]
 
   network {
+    ip = "${var.private_ip_prefix}.${count.index+10+var.control_plane_nodes}"
     network_id = hcloud_network.default.id
   }
 

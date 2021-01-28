@@ -55,6 +55,9 @@ module "hcloud_kubernetes_infra" {
   # CIDR of private network
   privat_ip_range = "10.10.0.0/16"
 
+  # private IP prefix (have to match CIDR of private network)
+  private_ip_prefix = "10.10.0"
+
   # Name for the load balancer
   load_balancer_name = "load-balancer"
 
