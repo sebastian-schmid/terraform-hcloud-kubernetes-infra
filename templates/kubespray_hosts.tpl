@@ -1,6 +1,7 @@
 ## This hosts file is ready to use with https://kubespray.io
 ## Configure 'ip' variable to bind kubernetes services on a
 ## different ip than the default iface
+[all]
 %{ for server in control_plane_nodes ~}
 ${server.name} ansible_host=${server.ipv4_address} ip=${element(server.network.*.ip, 0)}
 %{ endfor ~}
